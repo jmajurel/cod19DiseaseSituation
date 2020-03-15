@@ -10,6 +10,14 @@ async function getLastestSituation(req, res, next) {
     return next(err);
   }
 }
+async function getAllSituation(req, res, next) {
+  try {
+    const situations = await db.situation.find();
+    return res.status(200).json(situations);
+  } catch (err) {
+    return next(err);
+  }
+}
 
 async function insertSituation(req, res, next) {
   try {
@@ -30,4 +38,9 @@ async function deleteSituation(req, res, next) {
   }
 }
 
-module.exports = { getLastestSituation, insertSituation, deleteSituation };
+module.exports = {
+  getAllSituation,
+  getLastestSituation,
+  insertSituation,
+  deleteSituation
+};
