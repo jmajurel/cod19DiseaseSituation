@@ -49,7 +49,7 @@ async function insertSituation(req, res, next) {
     const newlyCreatedSituation = await db.situation.create(data);
 
     if (foundCountry) {
-      foundCountry.situation.push(newlyCreatedSituation._id);
+      foundCountry.situations.push(newlyCreatedSituation._id);
       await foundCountry.save();
     }
 
