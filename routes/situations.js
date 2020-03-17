@@ -8,14 +8,14 @@ const {
 
 const router = express.Router({ mergeParams: true });
 
-router.get("/situations", (req, res, next) => {
+router.get("/", (req, res, next) => {
   return req.query && !!req.query["latest"]
     ? getLastestSituation(req, res, next)
     : getAllSituation(req, res, next);
 });
 
-router.post(insertSituation);
+router.post("/", insertSituation);
 
-router.delete("/situations/:id", deleteSituation);
+router.delete("/:id", deleteSituation);
 
 module.exports = router;
