@@ -14,5 +14,6 @@ mongoose.connect(
 );
 
 const situation = require("./situation");
+const country = require("./country");
 
 module.exports = { situation };
