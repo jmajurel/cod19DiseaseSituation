@@ -11,7 +11,7 @@ async function getCountries(req, res, next) {
 
 async function insertCountry(req, res, next) {
   try {
-    const newlyCreatedCountry = await db.country.save({ ...req.body });
+    const newlyCreatedCountry = await db.country.create({ ...req.body });
     return res.status(200).json(newlyCreatedCountry);
   } catch (err) {
     return next(err);
