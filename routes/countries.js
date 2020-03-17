@@ -1,8 +1,9 @@
 const express = require("express");
-const { insertCountry } = require("../handlers/handleCountry");
+const { insertCountry, getCountries } = require("../handlers/handleCountry");
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
+router.get("/", getCountries);
 router.post("/", insertCountry);
 
 module.exports = router;

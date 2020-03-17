@@ -9,6 +9,18 @@ async function getCountries(req, res, next) {
   }
 }
 
+async function getOneCountry(req, res, next) {
+  try {
+    const country = await db.country
+      .findOne({ name: req.params.name })
+      .populate("situations");
+
+    return res.status(200).json(country);
+  } catch (err) {
+    return next(err);
+  }
+}
+
 async function insertCountry(req, res, next) {
   try {
     const newlyCreatedCountry = await db.country.create({ ...req.body });
