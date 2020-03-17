@@ -24,6 +24,6 @@ http POST $API_URL timeStamp='2/19/2020, 10:00:00 AM' activeCase:=75204 newCase:
 http POST $API_URL timeStamp='2/14/2020, 10:00:00 AM' activeCase:=49053 newCase:=2056 totalDeaths:=1383 newDeaths:=122 nbOfAffectedCountries:=25 
 http POST $API_URL timeStamp='2/09/2020, 10:00:00 AM' activeCase:=37558 newCase:=2676 totalDeaths:=813 newDeaths:=90 nbOfAffectedCountries:=25 
 http POST $API_URL timeStamp='2/04/2020, 10:00:00 AM' activeCase:=20630 newCase:=3241 totalDeaths:=426 newDeaths:=64 nbOfAffectedCountries:=24 
-http POST $API_URL timeStamp='30/01/2020, 10:00:00 AM' activeCase:=7818 totalDeaths:=170 nbOfAffectedCountries:=19
-http POST $API_URL timeStamp='25/01/2020, 10:00:00 AM' activeCase:=1320 totalDeaths:=41 nbOfAffectedCountries:=10 
-http POST $API_URL timeStamp='21/01/2020, 10:00:00 AM' activeCase:=282 totalDeaths:=6 nbOfAffectedCountries:=4
+http POST $API_URL timeStamp='1/30/2020, 10:00:00 AM' activeCase:=7818 totalDeaths:=170 nbOfAffectedCountries:=19
+http POST $API_URL timeStamp='1/25/2020, 10:00:00 AM' activeCase:=1320 totalDeaths:=41 nbOfAffectedCountries:=10 
+http POST $API_URL timeStamp='1/21/2020, 10:00:00 AM' activeCase:=282 totalDeaths:=6 nbOfAffectedCountries:=4
