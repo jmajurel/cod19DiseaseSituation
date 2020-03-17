@@ -48,6 +48,11 @@ async function insertSituation(req, res, next) {
 
     const newlyCreatedSituation = await db.situation.create(data);
 
+    if (foundCountry) {
+      foundCountry.situation.push(newlyCreatedSituation._id);
+      await foundCountry.save();
+    }
+
     return res.status(200).json(newlyCreatedSituation);
   } catch (err) {
     return next(err);
