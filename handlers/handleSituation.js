@@ -32,16 +32,9 @@ async function insertSituation(req, res, next) {
       timeStamp
     } = req.body;
 
-    const foundCountry = await db.Country.findOne({ name: countryName });
-    if (!foundCountry) {
-      return next({
-        status: 400,
-        message: "The provided country does not exist"
-      });
-    }
+    const foundCountry = await db.country.findOne({ name: countryName });
 
-    const newlyCreatedSituation = await db.situation.create({
-      country: foundCountry.id,
+    const data = {
       timeStamp,
       activeCase,
       newCase,
@@ -49,7 +42,11 @@ async function insertSituation(req, res, next) {
       newDeaths,
       nbOfAffectedCountries,
       nbOfNewAffectedCountries
-    });
+    };
+
+    if (foundCountry) data["country"] = foundCountry.id;
+
+    const newlyCreatedSituation = await db.situation.create(data);
 
     return res.status(200).json(newlyCreatedSituation);
   } catch (err) {
