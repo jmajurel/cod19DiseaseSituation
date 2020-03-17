@@ -2,10 +2,14 @@ const mongoose = require("mongoose");
 
 mongoose.set("debug", true);
 mongoose.Promise = Promise;
+const connectionString = process.env.DB_CONNECTION_STRING;
+
+connectionString = connectionString
+  .replace("<dbuser>", process.env.DB_USER)
+  .replace("<dbpassword>", process.env.DB_PWD);
 
 mongoose.connect(
-  `mongodb://${process.env.DB_USER}:${process.env.DB_PWD}@ds247121.mlab.com:47121/cod19-situation` ||
-    "mongodb://127.0.0.1:27017/cod19-situation",
+  connectionString || "mongodb://127.0.0.1:27017/cod19-situation",
   { useNewUrlParser: true }
 );
 
