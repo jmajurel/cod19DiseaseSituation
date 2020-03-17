@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 mongoose.set("debug", true);
 mongoose.Promise = Promise;
-const connectionString = process.env.DB_CONNECTION_STRING;
+let connectionString = process.env.DB_CONNECTION_STRING;
 
 connectionString = connectionString
   .replace("<dbuser>", process.env.DB_USER)
