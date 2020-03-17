@@ -30,4 +30,4 @@ async function insertCountry(req, res, next) {
   }
 }
 
-module.exports = { getCountries, insertCountry };
+module.exports = { getCountries, insertCountry, getOneCountry };
