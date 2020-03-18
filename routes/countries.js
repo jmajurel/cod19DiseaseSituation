@@ -10,7 +10,7 @@ const router = express.Router({ mergeParams: true });
 router.get("/", async function(req, res, next) {
   try {
     const data = !!req.query["name"]
-      ? await getOneCountry(req.params.name)
+      ? await getOneCountry(req.query["name"])
       : await getCountries();
     return res.status(200).json(data);
   } catch (err) {
