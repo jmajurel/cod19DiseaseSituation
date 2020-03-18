@@ -1,68 +1,55 @@
-const db = require("../models");
+const situation = require("../models/situation");
 
-async function getLastestSituation(req, res, next) {
-  try {
-    const lastestSituation = await db.situation
-      .findOne()
-      .sort({ timeStamp: -1 });
-    return res.status(200).json(lastestSituation);
-  } catch (err) {
-    return next(err);
-  }
-}
-async function getAllSituation(req, res, next) {
-  try {
-    const situations = await db.situation.find();
-    return res.status(200).json(situations);
-  } catch (err) {
-    return next(err);
-  }
+async function getLastestSituation() {
+  const lastestSituation = await situation.findOne().sort({ timeStamp: -1 });
+  return lastestSituation;
 }
 
-async function insertSituation(req, res, next) {
-  try {
-    const {
-      countryName,
-      activeCase,
-      newCase,
-      totalDeaths,
-      newDeaths,
-      nbOfAffectedCountries,
-      nbOfNewAffectedCountries,
-      timeStamp
-    } = req.body;
+async function getAllSituation() {
+  const situations = await situation.find();
+  return situations;
+}
 
-    const foundCountry = await db.country.findOne({ name: countryName });
+async function insertSituation(newSituation) {
+  const {
+    countryName,
+    activeCase,
+    newCase,
+    totalDeaths,
+    newDeaths,
+    nbOfAffectedCountries,
+    nbOfNewAffectedCountries,
+    timeStamp
+  } = newSituation;
 
-    const data = {
-      timeStamp,
-      activeCase,
-      newCase,
-      totalDeaths,
-      newDeaths,
-      nbOfAffectedCountries,
-      nbOfNewAffectedCountries
-    };
+  const foundCountry = await situation.findOne({ name: countryName });
 
-    if (foundCountry) data["country"] = foundCountry.id;
+  const data = {
+    timeStamp,
+    activeCase,
+    newCase,
+    totalDeaths,
+    newDeaths,
+    nbOfAffectedCountries,
+    nbOfNewAffectedCountries
+  };
 
-    const newlyCreatedSituation = await db.situation.create(data);
+  if (foundCountry) data["country"] = foundCountry.id;
 
-    if (foundCountry) {
-      foundCountry.situations.push(newlyCreatedSituation._id);
-      await foundCountry.save();
-    }
+  const newlyCreatedSituation = await situation.create(data);
 
-    return res.status(200).json(newlyCreatedSituation);
-  } catch (err) {
-    return next(err);
+  if (foundCountry) {
+    foundCountry.situations.push(newlyCreatedSituation._id);
+    await foundCountry.save();
   }
+
+  return newlyCreatedSituation;
 }
 
 async function deleteSituation(req, res, next) {
   try {
     const id = req.params.id;
-    const deleted = await db.situation.deleteOne({ _id: id });
+    const deleted = await situation.deleteOne({ _id: id });
     return res.status(204).json();
   } catch (err) {
     return next(err);

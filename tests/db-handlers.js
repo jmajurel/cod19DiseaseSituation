@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { MongoMemoryServer } = require("mongodb-memory-server");
-
+const Situation = require("../models/situation");
 const mongod = new MongoMemoryServer();
 
 /**
@@ -37,5 +37,12 @@ module.exports.clearDatabase = async () => {
   for (const key in collections) {
     const collection = collections[key];
     await collection.deleteMany();
+  }
+};
+
+module.exports.initializeSituationStore = async store => {
+  for (let i = 0; i < store.situations.length; i++) {
+    let situation = new Situation(store.situations[i]);
+    await situation.save();
   }
 };

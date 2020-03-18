@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 require("dotenv").config();
+require("./handlers/handleDbConnection");
 
 const countryRouter = require("./routes/countries");
 const situationRouter = require("./routes/situations");

@@ -1,8 +1,8 @@
-const db = require("../models");
+const country = require("../models/country");
 
 async function getCountries(req, res, next) {
   try {
-    const countries = await db.country.find();
+    const countries = await country.find();
     return res.status(200).json(countries);
   } catch (err) {
     return next(err);
@@ -11,7 +11,7 @@ async function getCountries(req, res, next) {
 
 async function getOneCountry(req, res, next) {
   try {
-    const country = await db.country
+    const country = await country
       .findOne({ name: req.params.name })
       .populate("situations");
 
@@ -23,7 +23,7 @@ async function getOneCountry(req, res, next) {
 
 async function insertCountry(req, res, next) {
   try {
-    const newlyCreatedCountry = await db.country.create({ ...req.body });
+    const newlyCreatedCountry = await country.create({ ...req.body });
     return res.status(200).json(newlyCreatedCountry);
   } catch (err) {
     return next(err);
