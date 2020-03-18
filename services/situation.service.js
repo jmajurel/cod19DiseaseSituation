@@ -38,7 +38,7 @@ async function insertSituation(newSituation) {
 
   const newlyCreatedSituation = await situation.create(data);
 
-  if (!foundCountry) {
+  if (!!foundCountry) {
     if (!foundCountry.situations) foundCountry.situations = [];
 
     foundCountry.situations.push(newlyCreatedSituation._id);
