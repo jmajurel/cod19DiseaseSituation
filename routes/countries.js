@@ -3,15 +3,27 @@ const {
   insertCountry,
   getCountries,
   getOneCountry
-} = require("../handlers/handleCountry");
+} = require("../services/country.service");
 
 const router = express.Router({ mergeParams: true });
 
-router.get("/", function(req, res, next) {
-  return !!req.params.name
-    ? getOneCountry(req, res, next)
-    : getCountries(req, res, next);
+router.get("/", async function(req, res, next) {
+  try {
+    const data = !!req.query["name"]
+      ? await getOneCountry(req.params.name)
+      : await getCountries();
+    return res.status(200).json(data);
+  } catch (err) {
+    return next(err);
+  }
 });
-router.post("/", insertCountry);
+router.post("/", async (req, res, next) => {
+  try {
+    const newlyCreatedCountry = await insertCountry(req.body);
+    return res.status(200).json(newlyCreatedCountry);
+  } catch (err) {
+    return next(err);
+  }
+});
 
 module.exports = router;

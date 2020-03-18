@@ -2,11 +2,12 @@ const mongoose = require("mongoose");
 const {
   getAllSituation,
   getLastestSituation,
-  insertSituation
-} = require("../handlers/handleSituation");
+  insertSituation,
+  deleteSituation
+} = require("../services/situation.service");
 
 const dbHandler = require("./db-handlers");
-const SituationStore = require("./situation.store");
+const SituationStore = require("./stores/situation.store");
 const { MongoClient } = require("mongodb");
 
 beforeAll(dbHandler.connect);
@@ -14,10 +15,10 @@ afterAll(dbHandler.closeDatabase);
 
 const situationStore = new SituationStore();
 
-describe("get", () => {
-  beforeEach(() => dbHandler.initializeSituationStore(situationStore));
-  afterEach(dbHandler.clearDatabase);
+beforeEach(() => situationStore.mount());
+afterEach(dbHandler.clearDatabase);
 
+describe("get", () => {
   it("get all situations", async () => {
     const situations = await getAllSituation();
     expect(situations).toBeTruthy();
@@ -37,8 +38,6 @@ describe("get", () => {
 });
 
 describe("insert", () => {
-  afterEach(dbHandler.clearDatabase);
-
   it("create & save situtation successfully", async () => {
     const savedSituation = await insertSituation({
       timeStamp: "3/15/2020, 10:00:00 AM",
@@ -52,5 +51,16 @@ describe("insert", () => {
     expect(savedSituation).toBeTruthy();
     // Object Id should be defined when successfully saved to MongoDB.
     expect(savedSituation._id).toBeDefined();
+  });
+});
+
+describe("delete", () => {
+  it("delete a situation", async () => {
+    const targetSituation = await getLastestSituation();
+    await deleteSituation(targetSituation._id);
+
+    const situations = await getAllSituation();
+
+    expect(situations).not.toContain(targetSituation);
   });
 });

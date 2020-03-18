@@ -39,10 +39,3 @@ module.exports.clearDatabase = async () => {
     await collection.deleteMany();
   }
 };
-
-module.exports.initializeSituationStore = async store => {
-  for (let i = 0; i < store.situations.length; i++) {
-    let situation = new Situation(store.situations[i]);
-    await situation.save();
-  }
-};

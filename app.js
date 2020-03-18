@@ -3,11 +3,11 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 require("dotenv").config();
-require("./handlers/handleDbConnection");
+require("./services/handleDbConnection");
 
 const countryRouter = require("./routes/countries");
 const situationRouter = require("./routes/situations");
-const errorHandler = require("./handlers/handleError");
+const errorHandler = require("./services/handleError");
 
 const PORT = process.env.PORT || 8080;
 

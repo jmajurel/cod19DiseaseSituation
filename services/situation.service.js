@@ -38,7 +38,9 @@ async function insertSituation(newSituation) {
 
   const newlyCreatedSituation = await situation.create(data);
 
-  if (foundCountry) {
+  if (!foundCountry) {
+    if (!foundCountry.situations) foundCountry.situations = [];
+
     foundCountry.situations.push(newlyCreatedSituation._id);
     await foundCountry.save();
   }
@@ -46,14 +48,8 @@ async function insertSituation(newSituation) {
   return newlyCreatedSituation;
 }
 
-async function deleteSituation(req, res, next) {
-  try {
-    const id = req.params.id;
-    const deleted = await situation.deleteOne({ _id: id });
-    return res.status(204).json();
-  } catch (err) {
-    return next(err);
-  }
+async function deleteSituation(id) {
+  await situation.deleteOne({ _id: id });
 }
 
 module.exports = {
