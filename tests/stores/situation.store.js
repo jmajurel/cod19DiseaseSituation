@@ -9,6 +9,7 @@ const todaySituation = {
   nbOfAffectedCountries: 143,
   nbOfNewAffectedCountries: 9
 };
+
 const yesterdaySituation = {
   timeStamp: "3/09/2020, 10:00:00 AM",
   activeCase: 153517,

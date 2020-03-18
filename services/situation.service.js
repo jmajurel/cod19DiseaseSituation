@@ -1,12 +1,19 @@
 const situation = require("../models/situation");
 
-async function getLastestSituation() {
-  const lastestSituation = await situation.findOne().sort({ timeStamp: -1 });
+async function getLastestGlobalSituation() {
+  const lastestSituation = await situation
+    .findOne({ country: null })
+    .sort({ timeStamp: -1 });
   return lastestSituation;
 }
 
 async function getAllSituation() {
   const situations = await situation.find();
+  return situations;
+}
+
+async function getAllGlobalSituations() {
+  const situations = await situation.find({ country: null });
   return situations;
 }
 
@@ -54,7 +61,8 @@ async function deleteSituation(id) {
 
 module.exports = {
   getAllSituation,
-  getLastestSituation,
+  getAllGlobalSituations,
+  getLastestGlobalSituation,
   insertSituation,
   deleteSituation
 };

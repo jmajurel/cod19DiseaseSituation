@@ -1,4 +1,5 @@
 #!/bin/bash
+API_URL="https://cod19-situation-dev.herokuapp.com/situations/"
 
 http POST $API_URL countryName="Italy" timeStamp='3/14/2020, 10:00:00 AM' activeCase:=17660 newCase:=2547 totalDeaths:=1268 newDeaths:=252
 http POST $API_URL countryName="France" timeStamp='3/14/2020, 10:00:00 AM' activeCase:=3640 newCase:=780 totalDeaths:=79 newDeaths:=18

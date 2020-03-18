@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const {
   getAllSituation,
-  getLastestSituation,
+  getAllGlobalSituations,
+  getLastestGlobalSituation,
   insertSituation,
   deleteSituation
 } = require("../services/situation.service");
@@ -24,16 +25,25 @@ describe("get", () => {
     expect(situations).toBeTruthy();
     expect(situations.length).toBeGreaterThan(0);
   });
+
   it("get latest situation", async () => {
-    const latestSituation = await getLastestSituation();
+    const latestSituation = await getLastestGlobalSituation();
     expect(latestSituation).toBeTruthy();
     expect(latestSituation.timeStamp.toISOString()).toBe(
       new Date(
-        situationStore.situations.sort(
-          (a, b) => Date.parse(b.timeStamp) - Date.parse(a.timeStamp)
-        )[0].timeStamp
+        situationStore.situations
+          .filter(situation => !situation.country)
+          .sort(
+            (a, b) => Date.parse(b.timeStamp) - Date.parse(a.timeStamp)
+          )[0].timeStamp
       ).toISOString()
     );
+  });
+
+  it("get all global situation", async () => {
+    const situations = await getAllGlobalSituations();
+    expect(situations).toBeTruthy();
+    expect(situations.length).toBeGreaterThan(0);
   });
 });
 
@@ -56,7 +66,7 @@ describe("insert", () => {
 
 describe("delete", () => {
   it("delete a situation", async () => {
-    const targetSituation = await getLastestSituation();
+    const targetSituation = await getLastestGlobalSituation();
     await deleteSituation(targetSituation._id);
 
     const situations = await getAllSituation();
