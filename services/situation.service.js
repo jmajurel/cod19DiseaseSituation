@@ -1,5 +1,5 @@
 const situation = require("../models/situation");
-
+const country = require("../models/country");
 async function getLastestGlobalSituation() {
   const lastestSituation = await situation
     .findOne({ country: null })
@@ -28,11 +28,12 @@ async function insertSituation(newSituation) {
     nbOfNewAffectedCountries,
     timeStamp
   } = newSituation;
-
-  const foundCountry = null;
+  console.log("countryName: ", countryName);
+  let foundCountry = null;
   if (countryName)
-    foundCountry = await situation.findOne({ name: countryName });
+    foundCountry = await country.findOne({ name: `${countryName}` });
 
+  console.log(foundCountry);
   const data = {
     timeStamp,
     activeCase,
@@ -44,6 +45,7 @@ async function insertSituation(newSituation) {
   };
 
   if (foundCountry) data["country"] = foundCountry.id;
+  console.log("data: ", data);
 
   const newlyCreatedSituation = await situation.create(data);
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-API_URL="https://cod19-situation-dev.herokuapp.com/situations/"
+API_URL="https://cod19-situation-dev.herokuapp.com/countries/"
 
 http POST $API_URL name="China"
 http POST $API_URL name="Republic of Korea"
