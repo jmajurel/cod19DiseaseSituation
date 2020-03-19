@@ -29,7 +29,9 @@ async function insertSituation(newSituation) {
     timeStamp
   } = newSituation;
 
-  const foundCountry = await situation.findOne({ name: countryName });
+  const foundCountry = null;
+  if (countryName)
+    foundCountry = await situation.findOne({ name: countryName });
 
   const data = {
     timeStamp,
