@@ -7,7 +7,8 @@ const countrySchema = mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "Situation"
     }
-  ]
+  ],
+  lockdownDate: Date
 });
 
 module.exports = mongoose.model("Country", countrySchema);

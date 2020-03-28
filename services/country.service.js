@@ -12,4 +12,9 @@ async function insertCountry(newCountry) {
   return await country.create({ ...newCountry });
 }
 
-module.exports = { getCountries, insertCountry, getOneCountry };
+async function updatedCountry(id, updatedCountry) {
+  await country.updateOne({ _id: id }, { ...updatedCountry });
+  return;
+}
+
+module.exports = { getCountries, insertCountry, getOneCountry, updatedCountry };

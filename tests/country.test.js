@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 const {
   getCountries,
   getOneCountry,
-  insertCountry
+  insertCountry,
+  updatedCountry
 } = require("../services/country.service");
 
 const dbHandler = require("./db-handlers");
@@ -38,5 +39,23 @@ describe("insert", () => {
     expect(newlyCreatedCountry).toBeTruthy();
     expect(newlyCreatedCountry._id).toBeDefined();
     expect(newlyCreatedCountry.name).toBe(fackName);
+  });
+});
+
+describe("update", () => {
+  it("update an existing country", async () => {
+    const target = await getOneCountry(countryStore.countries[0].name);
+
+    target.lockdownDate = new Date().toISOString();
+
+    await updatedCountry(target._id, {
+      name: target.name,
+      lockdownDate: target.lockdownDate
+    });
+    const updatedEntry = await getOneCountry(countryStore.countries[0].name);
+    expect(updatedEntry).toBeTruthy();
+    expect(updatedEntry.lockdownDate.toISOString()).toBe(
+      target.lockdownDate.toISOString()
+    );
   });
 });
