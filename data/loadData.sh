@@ -1,7 +1,8 @@
 #!/bin/bash
 API_URL="https://cod19-situation-dev.herokuapp.com/situations/"
 
-http POST $API_URL timeStamp='4/03/2020, 10:00:00 AM' activeCase:=972303 newCase:=75853 totalDeaths:=50322 newDeaths:=4823 
+http POST $API_URL timeStamp='4/04/2020, 10:00:00 AM' activeCase:=1051635 newCase:=79332 totalDeaths:=56985 newDeaths:=6604 
+#http POST $API_URL timeStamp='4/03/2020, 10:00:00 AM' activeCase:=972303 newCase:=75853 totalDeaths:=50322 newDeaths:=4823 
 #http POST $API_URL timeStamp='4/02/2020, 10:00:00 AM' activeCase:=896450 newCase:=72839 totalDeaths:=45526 newDeaths:=4924 
 #http POST $API_URL timeStamp='4/01/2020, 10:00:00 AM' activeCase:=823626 newCase:=72736 totalDeaths:=40598 newDeaths:=4193 
 #http POST $API_URL timeStamp='3/31/2020, 10:00:00 AM' activeCase:=750890 newCase:=57610 totalDeaths:=36405 newDeaths:=3301 
