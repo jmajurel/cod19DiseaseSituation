@@ -3,7 +3,7 @@ const {
   getCountries,
   getOneCountry,
   insertCountry,
-  updatedCountry
+  updatedCountry,
 } = require("../services/country.service");
 
 const dbHandler = require("./db-handlers");
@@ -22,16 +22,16 @@ describe("get", () => {
     expect(countries).toBeTruthy();
     expect(countries.length).toBeGreaterThan(0);
   });
-});
 
-describe("insert", () => {
   it("get a country by name", async () => {
     const target = countryStore.countries[1];
     const country = await getOneCountry(target.name);
     expect(country).toBeTruthy();
     expect(country.name).toBe(target.name);
   });
+});
 
+describe("insert", () => {
   it("insert a new country", async () => {
     const fackName = "Megapolis";
     const newlyCreatedCountry = await insertCountry({ name: fackName });
@@ -50,7 +50,7 @@ describe("update", () => {
 
     await updatedCountry(target._id, {
       name: target.name,
-      lockdownDate: target.lockdownDate
+      lockdownDate: target.lockdownDate,
     });
     const updatedEntry = await getOneCountry(countryStore.countries[0].name);
     expect(updatedEntry).toBeTruthy();

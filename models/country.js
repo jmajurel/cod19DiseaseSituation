@@ -5,10 +5,11 @@ const countrySchema = mongoose.Schema({
   situations: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Situation"
-    }
+      ref: "Situation",
+    },
   ],
-  lockdownDate: Date
+  lockdownDate: Date,
+  populationNb: Number,
 });
 
 module.exports = mongoose.model("Country", countrySchema);
