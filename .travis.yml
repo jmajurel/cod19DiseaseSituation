@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - 12.16.2
+script:
+  - npm run test
+after_script:
+  - cat ./coverage/lcov.info | coveralls
+deploy:
+  provider: heroku
+  api_key:
+    secure: I01ihVslPzQpqjlJc/WWi7oGzNYxv0CZeBTD6OUEEEoQNFkz8No7GbH7N0UDycppJImOmspaip7rYYQwTSMONCxHYArIk/+yMVkP11YvrrhdJTSg06AEFQ4sY5FR3ApbBG6yzhtY+l4iLFqf8OdZ5CMDk3X9cZbV7J1CzsQQfbSTzlnieyDDhvjAzz19mSTlvpWj33N2GxIYxg/XHCGqxnvonw9q+kTZeQEVUqAbb7nUx/dYXqZBX0ARb4vKmwiJZblkZaO5IClpTSyHFu1pPiT4CgAwZR7fRA4Gb2RonvK2NxPAoaxmSUMebb2hveDopSgceHyy0MaB+p87dIgMZVhZF99jb3btra8nYILevKqQ0ZRKFR126uaJcjVmDrsv7nSNCitvsi+TgDH0x2gi85fblbya97b/07qB18q3zVXziPuFpdEvZTY4NNIUB6VUMSecZLRxAr4kSY6Rn8loa2KRZbeCLSoAmUH+i2/whrkU1pUwCrX0BbsCqHU97hxaKHW0Q2GRY/htcu1/GPzB/5RvHZtPvSwP1X9dPkRHiekOD7NVypZZk8SvLCKskIys8NNbqfu5UxPHfL0bHWGagE2I2MiinmflTi7o7vPlHC0oKQBmhvR+VQ3CoPudCwHXv0Miv6dsDKl2eaighabnMKf5XtJ7kyoGqJlU7FBiG5w=
+  app:
+    develop: cod19-situation-dev
+    master: cod19-situation
+notifications:
+  email: false
