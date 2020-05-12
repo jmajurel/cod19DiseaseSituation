@@ -1,12 +1,13 @@
 #!/bin/bash
 API_URL="https://cod19-situation-dev.herokuapp.com/situations/"
 
-http POST $API_URL timeStamp='5/09/2020, 10:00:00 AM' activeCase:=3855812 newCase:=95845 totalDeaths:=265862 newDeaths:=6388 
-http POST $API_URL timeStamp='5/08/2020, 10:00:00 AM' activeCase:=3759967 newCase:=87729 totalDeaths:=259474 newDeaths:=5429 
-http POST $API_URL timeStamp='5/07/2020, 10:00:00 AM' activeCase:=3672238 newCase:=83465 totalDeaths:=254045 newDeaths:=6539 
+http POST $API_URL timeStamp='5/11/2020, 10:00:00 AM' activeCase:=4006257 newCase:=88891 totalDeaths:=278892 newDeaths:=4531 
+http POST $API_URL timeStamp='5/10/2020, 10:00:00 AM' activeCase:=3917366 newCase:=61578 totalDeaths:=274361 newDeaths:=8499 
 
+#http POST $API_URL timeStamp='5/09/2020, 10:00:00 AM' activeCase:=3855812 newCase:=95845 totalDeaths:=265862 newDeaths:=6388 
+#http POST $API_URL timeStamp='5/08/2020, 10:00:00 AM' activeCase:=3759967 newCase:=87729 totalDeaths:=259474 newDeaths:=5429 
+#http POST $API_URL timeStamp='5/07/2020, 10:00:00 AM' activeCase:=3672238 newCase:=83465 totalDeaths:=254045 newDeaths:=6539 
 #http POST $API_URL timeStamp='5/06/2020, 10:00:00 AM' activeCase:=3588773 newCase:=71463 totalDeaths:=247503 newDeaths:=4102 
-
 #http POST $API_URL timeStamp='5/05/2020, 10:00:00 AM' activeCase:=3517345 newCase:=81454 totalDeaths:=243401 newDeaths:=3797 
 #http POST $API_URL timeStamp='5/04/2020, 10:00:00 AM' activeCase:=3435894 newCase:=86108 totalDeaths:=239604 newDeaths:=976 
 #http POST $API_URL timeStamp='5/03/2020, 10:00:00 AM' activeCase:=3349786 newCase:=82763 totalDeaths:=238628 newDeaths:=8657 
